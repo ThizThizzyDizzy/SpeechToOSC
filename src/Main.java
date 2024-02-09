@@ -42,6 +42,14 @@ public class Main extends javax.swing.JFrame{
                             int count = Integer.parseInt(args[1]);
                             for(int i = 0; i<count; i++){
                                 String[] cmd = reader.readLine().split("\\|");
+                                String first = cmd[0];
+                                if(cmd.length>3){
+                                    for(int j = 1; j<cmd.length-2; j++){
+                                        cmd[0]+="|"+cmd[j];
+                                    }
+                                    cmd[1] = cmd[cmd.length-2];
+                                    cmd[2] = cmd[cmd.length-1];
+                                }
                                 addCommand(new Command(cmd[0], cmd[1], cmd[2]));
                             }
                             break;
@@ -74,7 +82,7 @@ public class Main extends javax.swing.JFrame{
         buttonSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SpeechToOSC v1.0.0");
+        setTitle("SpeechToOSC v1.0.1");
 
         labelStatus.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
